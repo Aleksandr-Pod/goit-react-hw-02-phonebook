@@ -1,7 +1,7 @@
-import React from 'react';
+import {Component} from 'react';
 import { InputItem } from "./inputForm.styled";
 
-export class InputForm extends React.Component {
+export class InputForm extends Component {
     state = {
         name: "",
         number: ""
@@ -12,8 +12,8 @@ export class InputForm extends React.Component {
     }
     render() {
         return (
-            <form><InputItem>Name
-                <input
+            <form><label>Name
+                <InputItem
                     type="text"
                     name="name"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -21,8 +21,8 @@ export class InputForm extends React.Component {
                     required
                     value={ this.state.name}
                     onChange={this.onInput}
-                /></InputItem>
-                <InputItem>Number<input
+                /></label>
+                <label>Number<InputItem
                     type="tel"
                     name="number"
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -30,10 +30,11 @@ export class InputForm extends React.Component {
                     required
                     value={ this.state.number}
                     onChange={this.onInput}
-                /></InputItem>
+                /></label>
                 <button type="submit" onClick={evt => {
-                    this.setState({ name: "", number: "" });
-                    this.props.SubmitHandle(evt, this.state);
+                    // if (input:invalid) return;
+                        this.setState({ name: "", number: "" });
+                        this.props.SubmitHandle(evt, this.state);
                 } }>Add contact</button>
             </form>
         )

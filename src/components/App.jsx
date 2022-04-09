@@ -18,8 +18,9 @@ export class App extends Component {
     ],
     filter: ''
   }
-  SubmitHandle = (evt, data) => {
+  submitHandle = (evt, data) => {
     evt.preventDefault();
+    if (!data.name || !data.number) return;
     data.id = nanoid();
     this.setState(prev => ({ contacts: [data, ...prev.contacts] }))
   }
@@ -42,7 +43,7 @@ export class App extends Component {
       <Phonebook>
         <InputFormBox>
           <h1>Phonebook</h1>
-          <InputForm SubmitHandle={this.SubmitHandle}/>
+          <InputForm SubmitHandle={this.submitHandle}/>
         </InputFormBox>
         <ContactListBox>
           <h2>Contact List</h2>
@@ -56,7 +57,7 @@ export class App extends Component {
   };
 }
 InputForm.propTypes = {
-  SubmitHandle: PropTypes.func
+  submitHandle: PropTypes.func
 }
 Filter.propTypes = {
   filter: PropTypes.string,
