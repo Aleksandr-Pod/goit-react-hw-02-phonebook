@@ -20,7 +20,11 @@ export class App extends Component {
   }
   submitHandle = (evt, data) => {
     evt.preventDefault();
-    if (!data.name || !data.number) return;
+    if (!data.name || !data.number) return; // проверка на ввод всех полей
+    // Проверка на дубликат имени в книге
+    const checkEqualName = this.state.contacts.find(el => (el.name === data.name));
+    if (checkEqualName) (alert(checkEqualName.name + " is already in contacts"));
+    
     data.id = nanoid();
     this.setState(prev => ({ contacts: [data, ...prev.contacts] }))
   }
