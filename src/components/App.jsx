@@ -18,12 +18,16 @@ export class App extends Component {
     ],
     filter: ''
   }
-  submitHandle = (evt, data) => {
-    evt.preventDefault();
-    if (!data.name || !data.number) return; // проверка на ввод всех полей
+  submitHandle = (data) => {
+    // evt.preventDefault();
+    // if (!data.name || !data.number) return; // проверка на ввод всех полей
+    
     // Проверка на дубликат имени в книге
     const checkEqualName = this.state.contacts.find(el => (el.name === data.name));
-    if (checkEqualName) (alert(checkEqualName.name + " is already in contacts"));
+    if (checkEqualName) {
+      alert(checkEqualName.name + " is already in contacts");
+      return;
+    }
     
     data.id = nanoid();
     this.setState(prev => ({ contacts: [data, ...prev.contacts] }))
@@ -47,7 +51,7 @@ export class App extends Component {
       <Phonebook>
         <InputFormBox>
           <h1>Phonebook</h1>
-          <InputForm SubmitHandle={this.submitHandle}/>
+          <InputForm submitHandle={this.submitHandle}/>
         </InputFormBox>
         <ContactListBox>
           <h2>Contact List</h2>
