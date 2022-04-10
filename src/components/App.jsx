@@ -23,11 +23,8 @@ export class App extends Component {
     // if (!data.name || !data.number) return; // проверка на ввод всех полей
     
     // Проверка на дубликат имени в книге
-    const checkEqualName = this.state.contacts.find(el => (el.name === data.name));
-    if (checkEqualName) {
-      alert(checkEqualName.name + " is already in contacts");
-      return;
-    }
+    const equalName = this.state.contacts.find(el => (el.name.toLowerCase() === data.name.toLowerCase()));
+    if (equalName) return alert(equalName.name + " is already in contacts");
     
     data.id = nanoid();
     this.setState(prev => ({ contacts: [data, ...prev.contacts] }))
