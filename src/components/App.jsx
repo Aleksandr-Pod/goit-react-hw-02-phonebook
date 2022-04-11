@@ -2,11 +2,10 @@ import {Component} from 'react';
 import { InputForm } from './InputForm';
 import { Filter } from './Filter';
 import { ContactList } from './ContactList';
-import { Phonebook } from './Phonebook.styled';
+import { PhonebookBox } from './Phonebook.styled';
 import { InputFormBox } from './inputForm.styled';
 import { ContactListBox } from './ContactList.styled';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
 
 export class App extends Component {
   state = {
@@ -45,7 +44,7 @@ export class App extends Component {
     const filteredContacts = contacts.filter(contact => (contact.name.toLowerCase().includes(normalizedFilter)));
 
     return (
-      <Phonebook>
+      <PhonebookBox>
         <InputFormBox>
           <h1>Phonebook</h1>
           <InputForm submitHandle={this.submitHandle}/>
@@ -57,18 +56,7 @@ export class App extends Component {
             <ContactList contacts={filteredContacts} onDelete={this.onDelete} /> :
             <p>No any contacts</p>}
         </ContactListBox>
-      </Phonebook>
+      </PhonebookBox>
     );
   };
-}
-InputForm.propTypes = {
-  submitHandle: PropTypes.func
-}
-Filter.propTypes = {
-  filter: PropTypes.string,
-  filterChange: PropTypes.func
-}
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
-  onDelete: PropTypes.func
 }

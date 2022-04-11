@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Phonebook = styled.div`
+export const PhonebookBox = styled.div`
 margin: 20px auto;
 width: 364px;
 padding: 10px;

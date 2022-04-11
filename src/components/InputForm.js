@@ -1,6 +1,7 @@
 import {Component} from 'react';
 import { InputItem } from "./inputForm.styled";
 import { Formik, Form } from 'formik';
+import PropTypes from 'prop-types';
 
 export class InputForm extends Component {
     state = {
@@ -11,11 +12,7 @@ export class InputForm extends Component {
     //     evt.preventDefault();
     //     this.setState({ [evt.currentTarget.name]: evt.currentTarget.value });
     // }
-    // validation = () => {
-    //     if (this.state.name.match(^ [a - zA - Zа - яА - Я] + (([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$)) {
-    //         console.log("name is correct")
-    //     }
-    // }
+
     onSubmit = (values, action) => {
         this.props.submitHandle(values);
         action.resetForm();
@@ -46,8 +43,6 @@ export class InputForm extends Component {
                     /></label>
                     <button type="submit">Add contact</button>
                 {/* <button type="submit" onClick={evt => {
-                        validation ();
-                    // if (input:invalid) return;
                         this.setState({ name: "", number: "" });
                         this.props.SubmitHandle(evt, this.state);
                 } }>Add contact</button> */}
@@ -55,4 +50,7 @@ export class InputForm extends Component {
                 </Formik>
         )
     }
+}
+InputForm.propTypes = {
+  submitHandle: PropTypes.func
 }
